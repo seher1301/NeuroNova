@@ -335,8 +335,8 @@ footer{background:var(--text);padding:3rem 2rem 2rem}
 <!-- TICKER -->
 <div class="ticker">
   <span class="ticker-label">Today's Fact</span>
-  <p class="ticker-text"><strong>1 July 2026:</strong> 
-When you imagine future situations, the brain often simulates possible conversations and outcomes. This mental rehearsal can help prepare you for real-life social interactions.</p>
+  <p class="ticker-text"><strong>2 July 2026:</strong> 
+Familiar smells can unlock powerful memories! The brain's smell-processing regions are closely connected to areas involved in emotion and memory. That's why a scent from childhood can suddenly bring back vivid memories from years ago.</p>
 </div>
 
 <!-- TOPICS -->
@@ -449,6 +449,34 @@ When you imagine future situations, the brain often simulates possible conversat
       <p class="section-lead">In-depth explorations of neuroscience topics — written for curious minds at every level.</p>
     </div>
     <div class="articles-grid reveal">
+      <div class="article-card">
+  <div class="article-top">
+    <div class="article-meta-row">
+      <span class="art-week">Week 5</span>
+      <span class="art-date">2 July 2026</span>
+    </div>
+    <h3>What Is Productivity and How Does It Help Us?</h3>
+  </div>
+  <div class="article-body">
+    <p>Have you ever looked at your to-do list, sighed dramatically, and then spent the next hour watching videos instead of actually doing anything? Most of us have. That's where productivity comes in. Many people think productivity means working constantly, never taking breaks, and always being busy. In reality, productivity is simply the ability to use your time, energy, and resources effectively to accomplish meaningful tasks. It's not about doing more things — it's about doing the right things efficiently.</p>
+    <div class="article-collapsed" id="art5-more">
+      <p>Productivity helps us make progress toward our goals, whether that's finishing homework, learning a new skill, preparing for an exam, or working on a passion project. When we're productive, we can complete important tasks in less time, which leaves us with more opportunities to relax, spend time with friends and family, and enjoy our hobbies.</p>
+      <p>One of the biggest benefits of productivity is <strong>reduced stress</strong>. When tasks pile up, it's easy to feel overwhelmed. However, by breaking large tasks into smaller steps and completing them one at a time, we gain a sense of control. Instead of constantly worrying about what needs to be done, we can focus on making steady progress.</p>
+      <p>Productivity also helps <strong>build confidence</strong>. Every time we complete a task, our brain receives a small sense of accomplishment. Over time, these achievements add up and show us that we are capable of reaching larger goals. Whether it's improving grades, finishing a project, or learning something new, productivity helps turn ambitions into reality.</p>
+      <p>However, it's important to remember that productivity does not mean working every minute of the day. <strong>Rest is a crucial part of being productive.</strong> Sleep, exercise, hobbies, and spending time with loved ones help our brains recharge so we can perform at our best. In fact, people who never take breaks often become less productive because they are tired and burnt out.</p>
+      <p>Scientists have found that productivity is closely connected to how our brains manage <strong>attention and motivation</strong>. When we focus on one task at a time and avoid distractions, our brains can work more efficiently. This is why techniques such as making to-do lists, setting goals, and taking regular breaks can be so effective.</p>
+      <p>At its core, productivity is about making progress, not achieving perfection. Everyone has days when they feel motivated and days when they don't. What matters most is building habits that help us move forward consistently, even in small ways. The next time you hear the word "productivity," think of it as a tool that helps you use your time wisely, reduce stress, achieve your goals, and create more space for the things that matter most.</p>
+    </div>
+    <button class="article-toggle" onclick="toggleArticle('art5')">Read more ↓</button>
+    <div class="article-tags">
+      <span class="art-tag">Productivity</span>
+      <span class="art-tag">Motivation</span>
+      <span class="art-tag">Attention</span>
+      <span class="art-tag">Mental Health</span>
+      <span class="art-tag">Habits</span>
+    </div>
+  </div>
+</div>
       <div class="article-card">
   <div class="article-top">
     <div class="article-meta-row">
@@ -791,8 +819,9 @@ When you imagine future situations, the brain often simulates possible conversat
 function toggleMenu(){document.getElementById('mobile-nav').classList.toggle('open')}
 function closeMenu(){document.getElementById('mobile-nav').classList.remove('open')}
 
-/* ── FACTS ── */
+/* ── FACTS ── 
 const facts=[
+  {date:"2 July", text:"Familiar smells can unlock powerful memories! The brain's smell-processing regions are closely connected to areas involved in emotion and memory. That's why a scent from childhood can suddenly bring back vivid memories from years ago."},
   {date:"1 July", text:"Your brain practices conversations before they happen! When you imagine future situations, the brain often simulates possible conversations and outcomes. This mental rehearsal can help prepare you for real-life social interactions."},
   {date:"30 June", text:"Music can activate almost the entire brain! Listening to music engages regions involved in hearing, memory, emotion, movement, and attention. Few activities stimulate as many different brain networks simultaneously."},
   {date:"29 June", text:"Although it feels like you're aware of everything around you, the brain can only process a small portion of incoming information at any given moment. Attention acts like a spotlight, highlighting some information while leaving other details in the dark."},
