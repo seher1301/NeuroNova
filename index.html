@@ -316,12 +316,12 @@ footer{background:var(--text);padding:3rem 2rem 2rem}
   </div>
   <div class="hero-stats">
     <div class="hero-stat">
-      <span class="hero-stat-num">25+</span>
+      <span class="hero-stat-num">35+</span>
       <span class="hero-stat-label">Daily facts</span>
     </div>
     <div class="hero-divider"></div>
     <div class="hero-stat">
-      <span class="hero-stat-num">5</span>
+      <span class="hero-stat-num">6</span>
       <span class="hero-stat-label">Weekly articles</span>
     </div>
     <div class="hero-divider"></div>
@@ -335,8 +335,8 @@ footer{background:var(--text);padding:3rem 2rem 2rem}
 <!-- TICKER -->
 <div class="ticker">
   <span class="ticker-label">Today's Fact</span>
-  <p class="ticker-text"><strong>3 July 2026:</strong> 
-The brain rewards curiosity! When you're curious about something, the brain becomes more receptive to learning. Studies suggest that curiosity can improve memory, helping you remember both the information you're interested in and unrelated details learned at the same time.</p>
+  <p class="ticker-text"><strong>10 July 2026:</strong> 
+The brain predicts what people will do next! Specialized brain networks constantly analyze facial expressions, body language, and past experiences to anticipate the actions and intentions of others.</p>
 </div>
 
 <!-- TOPICS -->
@@ -449,6 +449,35 @@ The brain rewards curiosity! When you're curious about something, the brain beco
       <p class="section-lead">In-depth explorations of neuroscience topics — written for curious minds at every level.</p>
     </div>
     <div class="articles-grid reveal">
+      <div class="article-card">
+  <div class="article-top">
+    <div class="article-meta-row">
+      <span class="art-week">Week 6</span>
+      <span class="art-date">9 July 2026</span>
+    </div>
+    <h3>The Science Behind Habits</h3>
+  </div>
+  <div class="article-body">
+    <p>Have you ever found yourself checking your phone without even thinking about it? Or brushing your teeth every morning almost automatically? These are examples of habits — actions that have become so familiar that our brains can perform them with very little conscious effort. But what exactly happens inside our brains when habits form?</p>
+    <div class="article-collapsed" id="art6-more">
+      <p>A habit is a behavior that becomes automatic through repetition. When we perform the same action repeatedly in a similar situation, our brains begin to recognize a pattern. Over time, the brain creates stronger neural pathways, making the behavior easier and more efficient to perform. This allows us to carry out routine tasks without using as much mental energy.</p>
+      <p>Scientists often describe habits using a concept called the <strong>habit loop</strong>, which consists of three parts: a <strong>cue</strong>, a <strong>routine</strong>, and a <strong>reward</strong>. The cue is a trigger that tells your brain to start a behavior. The routine is the action itself, and the reward is the benefit you receive afterward. For example, hearing your morning alarm (cue) might prompt you to brush your teeth (routine), leaving you feeling clean and refreshed (reward). As this loop repeats, the behavior becomes more automatic.</p>
+      <p>A key part of habit formation involves a region of the brain called the <strong>basal ganglia</strong>. This area helps control routines and automatic behaviors. When a behavior is new, the brain must actively think through each step. However, as the behavior is repeated, the basal ganglia take over much of the process, allowing the brain to perform the task with less effort. This is why experienced cyclists can ride a bike without consciously thinking about every movement.</p>
+      <p>Another important factor in habits is <strong>dopamine</strong>, a neurotransmitter often associated with motivation and reward. When we receive a reward after completing a behavior, dopamine helps reinforce the connection between the cue and the action. Over time, the brain begins to anticipate the reward, making us more likely to repeat the behavior. This is one reason why habits — both good and bad — can become deeply ingrained.</p>
+      <p>Habits are incredibly useful because they help our brains conserve energy. Imagine having to consciously think through every step of tying your shoes or making breakfast every single day. By automating routine actions, habits free up mental resources for more complex tasks such as problem-solving, learning, and creativity.</p>
+      <p>However, not all habits are beneficial. Because the brain values efficiency, it can automate unhealthy behaviors just as easily as positive ones. This is why breaking a bad habit can feel difficult — the neural pathways already exist. Instead of trying to eliminate a habit completely, experts often recommend <strong>replacing it with a healthier alternative</strong> that provides a similar reward.</p>
+      <p>Research suggests that consistency is more important than perfection when building new habits. Repeating a behavior in response to the same cue helps strengthen the neural pathways associated with that action. Ultimately, habits are one of the brain's most powerful tools — small actions repeated consistently can have a surprisingly large impact over time.</p>
+    </div>
+    <button class="article-toggle" onclick="toggleArticle('art6')">Read more ↓</button>
+    <div class="article-tags">
+      <span class="art-tag">Habits</span>
+      <span class="art-tag">Basal Ganglia</span>
+      <span class="art-tag">Dopamine</span>
+      <span class="art-tag">Neuroplasticity</span>
+      <span class="art-tag">Behaviour</span>
+    </div>
+  </div>
+</div>
       <div class="article-card">
   <div class="article-top">
     <div class="article-meta-row">
@@ -821,6 +850,13 @@ function closeMenu(){document.getElementById('mobile-nav').classList.remove('ope
 
 /* ── FACTS ── 
 const facts=[
+  {date:"10 July", text:"The brain predicts what people will do next! Specialized brain networks constantly analyze facial expressions, body language, and past experiences to anticipate the actions and intentions of others."},
+  {date:"9 July", text:"Your brain remembers unfinished tasks better! Psychologists call this the Zeigarnik Effect. Unfinished activities often stay active in the mind, making them easier to remember than completed ones."},
+  {date:"8 July", text:"Laughter is contagious because of your brain! Seeing or hearing someone laugh activates brain systems involved in social understanding and imitation, making you more likely to laugh too."},
+  {date:"7 July", text:"Your confidence doesn't always match your accuracy! People can feel very certain about something and still be wrong. The brain's sense of confidence and actual correctness are related, but they aren't the same thing."},
+  {date:"6 July", text:"The brain starts processing emotions before logic! Emotional brain regions can react to important information extremely quickly, sometimes before areas responsible for conscious reasoning fully analyze the situation."},
+  {date:"5 July", text:"Daydreaming isn't always a waste of time! When your mind wanders, a network called the default mode network becomes active. This system is involved in imagination, self-reflection, memory, and creative thinking."},
+  {date:"4 July", text:"Your brain creates habits to save energy! Thinking carefully about every action would be exhausting. Habits allow the brain to automate repeated behaviors, freeing up mental resources for more complex tasks."},
   {date:"3 July", text:"The brain rewards curiosity! When you're curious about something, the brain becomes more receptive to learning. Studies suggest that curiosity can improve memory, helping you remember both the information you're interested in and unrelated details learned at the same time."},
   {date:"2 July", text:"Familiar smells can unlock powerful memories! The brain's smell-processing regions are closely connected to areas involved in emotion and memory. That's why a scent from childhood can suddenly bring back vivid memories from years ago."},
   {date:"1 July", text:"Your brain practices conversations before they happen! When you imagine future situations, the brain often simulates possible conversations and outcomes. This mental rehearsal can help prepare you for real-life social interactions."},
