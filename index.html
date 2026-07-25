@@ -335,7 +335,7 @@ footer{background:var(--text);padding:3rem 2rem 2rem}
 <!-- TICKER -->
 <div class="ticker">
   <span class="ticker-label">Today's Fact</span>
-  <p class="ticker-text"><strong>22 July 2026:</strong> 
+  <p class="ticker-text"><strong>25 July 2026:</strong> 
     The brain is always balancing stability and change! Learning requires the brain to adapt, but too much change would make memories unreliable. Neural systems constantly work to maintain a balance between flexibility and stability.</p>
 </div>
 
@@ -449,6 +449,35 @@ footer{background:var(--text);padding:3rem 2rem 2rem}
       <p class="section-lead">In-depth explorations of neuroscience topics — written for curious minds at every level.</p>
     </div>
     <div class="articles-grid reveal">
+      <div class="article-card">
+  <div class="article-top">
+    <div class="article-meta-row">
+      <span class="art-week">Week 8</span>
+      <span class="art-date">23 July 2026</span>
+    </div>
+    <h3>Why Do We Cry?</h3>
+  </div>
+  <div class="article-body">
+    <p>Crying is one of the most universal human experiences. Whether we're laughing so hard that tears stream down our faces or crying because we're sad, our eyes produce tears for many different reasons. But why do humans cry, and what does it actually do?</p>
+    <div class="article-collapsed" id="art8-more">
+      <p>Tears are produced by the <strong>lacrimal glands</strong>, located just above each eye. These glands constantly release a small amount of tears to keep the eyes moist, clean, and protected. Without tears, our eyes would quickly become dry and irritated.</p>
+      <p>Scientists generally classify tears into three main types. <strong>Basal tears</strong> are always present and keep the surface of the eye lubricated. <strong>Reflex tears</strong> are produced in response to irritants such as smoke, dust, or onions, helping wash harmful substances away. <strong>Emotional tears</strong> are the ones most people associate with crying, triggered by strong feelings such as sadness, happiness, frustration, relief, or even overwhelming excitement.</p>
+      <p>Humans are the only known species that regularly shed emotional tears. While many animals produce tears to protect their eyes, emotional crying appears to be unique to people. Scientists believe this may have evolved as a powerful form of communication. When someone cries, it often signals that they need comfort, support, or understanding — even before any words are spoken.</p>
+      <p>Interestingly, emotional tears are <strong>chemically different</strong> from basal and reflex tears. Research has found that they contain different concentrations of certain proteins and hormones. Although scientists are still studying their exact purpose, this suggests that emotional crying may involve more than simply producing extra tears.</p>
+      <p>Many people also report feeling calmer after crying. While crying does not solve problems, expressing emotions can sometimes reduce emotional tension. The relief people experience may come from a combination of emotional expression, support from others, and the body's natural recovery after experiencing intense feelings.</p>
+      <p>Crying isn't always caused by sadness. People often cry during weddings, reunions, achievements, or moments of overwhelming joy. In these situations, tears may help the brain process powerful emotions, even when those emotions are positive.</p>
+      <p>The next time you see someone crying — or find yourself crying — remember that tears are more than just drops of water. They protect your eyes, help communicate emotions, and remind us that our brains and bodies are deeply connected.</p>
+    </div>
+    <button class="article-toggle" onclick="toggleArticle('art8')">Read more ↓</button>
+    <div class="article-tags">
+      <span class="art-tag">Emotions</span>
+      <span class="art-tag">Crying</span>
+      <span class="art-tag">Social Bonding</span>
+      <span class="art-tag">Brain & Body</span>
+      <span class="art-tag">Communication</span>
+    </div>
+  </div>
+</div>
       <div class="article-card">
   <div class="article-top">
     <div class="article-meta-row">
@@ -879,6 +908,9 @@ function closeMenu(){document.getElementById('mobile-nav').classList.remove('ope
 
 /* ── FACTS ── */
 const facts=[
+  {date:"25 July", text:"Your brain can learn from observation alone! Watching someone perform an action activates some of the same neural systems involved in performing the action yourself, helping support learning through observation."},
+  {date:"24 July", text:"The brain uses shortcuts to make decisions! To process information efficiently, the brain relies on mental shortcuts called heuristics. These shortcuts can save time but sometimes lead to cognitive biases."},
+  {date:"23 July", text:"Your brain can become temporarily \"blind\" to repetition! When the same stimulus appears repeatedly, the brain often responds less strongly over time. This process, called habituation, helps conserve mental resources."},
   {date:"22 July", text:"The brain is always balancing stability and change! Learning requires the brain to adapt, but too much change would make memories unreliable. Neural systems constantly work to maintain a balance between flexibility and stability."},
   {date:"21 July", text:"Your first impression forms surprisingly quickly! The brain can make initial judgments about people within seconds. These impressions may change over time, but the process begins almost immediately."},
   {date:"20 July", text:"The brain is wired to detect movement! Rapid movement in your surroundings quickly captures attention because detecting moving objects was important for survival throughout human evolution."},
