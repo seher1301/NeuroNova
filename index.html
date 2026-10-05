@@ -62,7 +62,16 @@ nav{position:sticky;top:0;z-index:200;background:var(--purple);display:flex;alig
 .nav-cta:hover{background:var(--teal-dark)!important;color:var(--white)!important}
 .nav-hamburger{display:none;background:none;border:none;cursor:pointer;padding:.4rem}
 .nav-hamburger span{display:block;width:22px;height:2px;background:var(--white);margin:4px 0;transition:.3s}
-
+.dark-toggle{background:none;border:1.5px solid rgba(255,255,255,.25);color:rgba(255,255,255,.8);font-size:.85rem;padding:.35rem .75rem;border-radius:100px;cursor:pointer;transition:all .2s}
+.dark-toggle:hover{background:rgba(255,255,255,.1)}
+body.dark{--purple-soft:#1a1128;--white:#0d0a1a;--card:#120e21;--border:#2d2050;--text:#e8e2f5;--text-mid:#c4b8e8;--text-light:#8f7fb5}
+body.dark .article-body p{color:#c4b8e8}
+body.dark .fact-body{color:#c4b8e8}
+body.dark .res-card{background:#120e21}
+body.dark .topic-card{background:#120e21}
+body.dark .about-stat-card{background:#1a1128}
+body.dark footer{background:#080512}
+  
 /* ── HERO ── */
 .hero{background:linear-gradient(140deg,var(--purple) 0%,#3d2180 45%,#1a4568 100%);padding:6rem 2rem 5rem;position:relative;overflow:hidden;text-align:center}
 .hero-orb{position:absolute;border-radius:50%;pointer-events:none}
@@ -297,6 +306,7 @@ if('serviceWorker' in navigator){
     <li><a href="#about">About</a></li>
     <li><a href="#connect" class="nav-cta">Connect</a></li>
   </ul>
+  <button class="dark-toggle" onclick="toggleDark()" id="dark-btn">🌙 Dark</button>
   <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
@@ -916,7 +926,17 @@ As you practice a skill, groups of neurons communicate more effectively with one
 
 <script>
 /* ── MOBILE NAV ── */
-function toggleMenu(){document.getElementById('mobile-nav').classList.toggle('open')}
+function toggleDark(){
+  document.body.classList.toggle('dark');
+  const btn=document.getElementById('dark-btn');
+  btn.textContent=document.body.classList.contains('dark')?'☀️ Light':'🌙 Dark';
+  localStorage.setItem('darkMode',document.body.classList.contains('dark'));
+}
+if(localStorage.getItem('darkMode')==='true'){
+  document.body.classList.add('dark');
+  document.getElementById('dark-btn').textContent='☀️ Light';
+}
+  function toggleMenu(){document.getElementById('mobile-nav').classList.toggle('open')}
 function closeMenu(){document.getElementById('mobile-nav').classList.remove('open')}
 
 /* ── FACTS ── */
