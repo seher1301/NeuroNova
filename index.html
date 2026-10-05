@@ -428,8 +428,11 @@ As you practice a skill, groups of neurons communicate more effectively with one
     </div>
     <div class="facts-layout reveal">
       <div>
+        <div style="margin-bottom:1.2rem">
+  <input type="text" id="facts-search" placeholder="Search facts... (e.g. sleep, memory, dopamine)" oninput="searchFacts()" style="width:100%;font-family:'DM Sans',sans-serif;font-size:.92rem;background:var(--card);color:var(--text);border:1.5px solid var(--border);border-radius:10px;padding:.7rem 1.1rem;outline:none;transition:border-color .2s"/>
+</div>
         <div id="facts-list"></div>
-        <div class="facts-nav">
+        <div class="facts-nav" id="facts-nav-row">
           <button class="facts-btn" id="prev-btn" onclick="changePage(-1)" disabled>← Newer</button>
           <span class="facts-page" id="page-info"></span>
           <button class="facts-btn" id="next-btn" onclick="changePage(1)">Older →</button>
@@ -1085,7 +1088,30 @@ function renderFacts(){
   document.getElementById('next-btn').disabled=page===totalPages-1;
 }
 
-function changePage(dir){
+function searchFacts(){
+  const query=document.getElementById('facts-search').value.toLowerCase().trim();
+  if(!query){
+    page=0;
+    renderFacts();
+    document.getElementById('facts-nav-row').style.display='flex';
+    return;
+  }
+  const list=document.getElementById('facts-list');
+  list.innerHTML='';
+  document.getElementById('facts-nav-row').style.display='none';
+  const results=facts.filter(f=>f.text.toLowerCase().includes(query)||f.date.toLowerCase().includes(query));
+  if(results.length===0){
+    list.innerHTML='<p style="font-size:.9rem;color:var(--text-light);padding:1rem 0">No facts found for "'+query+'"</p>';
+    return;
+  }
+  results.forEach(f=>{
+    const d=document.createElement('div');
+    d.className='fact-card visible';
+    d.innerHTML=`<div class="fact-date">${f.date}</div><p class="fact-body">${f.text}</p>`;
+    list.appendChild(d);
+  });
+}
+  function changePage(dir){
   page+=dir;
   renderFacts();
   document.getElementById('facts').scrollIntoView({behavior:'smooth',block:'start'});
