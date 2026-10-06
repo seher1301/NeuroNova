@@ -337,7 +337,7 @@ if('serviceWorker' in navigator){
   </div>
   <div class="hero-stats">
     <div class="hero-stat">
-      <span class="hero-stat-num" id="fact-count">100+</span>
+      <span class="hero-stat-num">50+</span>
       <span class="hero-stat-label">Daily facts</span>
     </div>
     <div class="hero-divider"></div>
@@ -1081,11 +1081,7 @@ function renderFacts(){
   slice.forEach(f=>{
     const d=document.createElement('div');
     d.className='fact-card visible';
-    d.innerHTML=`<div class="fact-date">${f.date}</div><p class="fact-body">${f.text}</p><div style="display:flex;gap:.5rem;margin-top:.8rem"><a href="https://wa.me/?text=${encodeURIComponent('🧠 NeuroNova Brain Fact — '+f.date+':
-
-'+f.text+'
-
-neuronova-kohl.vercel.app')}" target="_blank" style="font-size:.75rem;font-weight:600;color:var(--teal-dark);text-decoration:none;background:rgba(10,191,188,.1);padding:.25rem .7rem;border-radius:100px;border:1px solid rgba(10,191,188,.2)">📲 Share on WhatsApp</a></div>`;
+    d.innerHTML=`<div class="fact-date">${f.date}</div><p class="fact-body">${f.text}</p>`;
     list.appendChild(d);
   });
   document.getElementById('page-info').textContent=`Page ${page+1} of ${totalPages}`;
@@ -1112,11 +1108,7 @@ function searchFacts(){
   results.forEach(f=>{
     const d=document.createElement('div');
     d.className='fact-card visible';
-    d.innerHTML=`<div class="fact-date">${f.date}</div><p class="fact-body">${f.text}</p><div style="display:flex;gap:.5rem;margin-top:.8rem"><a href="https://wa.me/?text=${encodeURIComponent('🧠 NeuroNova Brain Fact — '+f.date+':
-
-'+f.text+'
-
-neuronova-kohl.vercel.app')}" target="_blank" style="font-size:.75rem;font-weight:600;color:var(--teal-dark);text-decoration:none;background:rgba(10,191,188,.1);padding:.25rem .7rem;border-radius:100px;border:1px solid rgba(10,191,188,.2)">📲 Share on WhatsApp</a></div>`;
+    d.innerHTML=`<div class="fact-date">${f.date}</div><p class="fact-body">${f.text}</p>`;
     list.appendChild(d);
   });
 }
@@ -1125,7 +1117,6 @@ neuronova-kohl.vercel.app')}" target="_blank" style="font-size:.75rem;font-weigh
   renderFacts();
   document.getElementById('facts').scrollIntoView({behavior:'smooth',block:'start'});
 }
-  document.getElementById('fact-count').textContent=facts.length+'+';
 renderFacts();
 
 /* ── ARTICLE TOGGLE ── */
