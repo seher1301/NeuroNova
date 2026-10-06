@@ -277,15 +277,15 @@ footer{background:var(--text);padding:3rem 2rem 2rem}
   .social-grid{flex-direction:column;align-items:center}
 }
 
-<script>
-if('serviceWorker' in navigator){
-  navigator.serviceWorker.register('/sw.js');
-}
-</script>
 /* ── SCROLL REVEAL ── */
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
 .reveal.in{opacity:1;transform:translateY(0)}
 </style>
+  <script>
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('/sw.js');
+}
+</script>
 </head>
 <body>
 
@@ -356,9 +356,9 @@ if('serviceWorker' in navigator){
 <!-- TICKER -->
 <div class="ticker">
   <span class="ticker-label">Today's Fact</span>
-  <p class="ticker-text"><strong>5th October 2026:</strong> 
-  Learning new skills strengthens brain networks!
-As you practice a skill, groups of neurons communicate more effectively with one another. 
+  <p class="ticker-text"><strong>6th October 2026:</strong> 
+  The brain can focus on only a limited amount at once!
+Although it may feel like multitasking, the brain often switches attention between tasks rather than processing them simultaneously.  
 </p>
 </div>
 
@@ -944,6 +944,7 @@ function closeMenu(){document.getElementById('mobile-nav').classList.remove('ope
 
 /* ── FACTS ── */
 const facts=[
+{date:"6 October", text:"The brain can focus on only a limited amount at once! Although it may feel like multitasking, the brain often switches attention between tasks rather than processing them simultaneously."},
 {date:"5 October", text:"Learning new skills strengthens brain networks! As you practice a skill, groups of neurons communicate more effectively with one another."},
 {date:"4 October", text:"The brain loves patterns! Recognizing patterns helps the brain process information more efficiently and make sense of complex situations."},
 {date:"3 October", text:"Emotions can influence decision-making! Feelings provide important information that helps the brain evaluate choices and guide behavior."},
