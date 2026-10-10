@@ -303,6 +303,7 @@ if('serviceWorker' in navigator){
     <li><a href="#articles">Articles</a></li>
     <li><a href="#quiz">Quiz</a></li>
     <li><a href="#resources">Resources</a></li>
+    <li><a href="#glossary">Glossary</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#connect" class="nav-cta">Connect</a></li>
   </ul>
@@ -804,6 +805,122 @@ New and unexpected events often capture the brain's focus more strongly than fam
   </div>
 </section>
 
+  <!-- GLOSSARY -->
+<section id="glossary">
+  <div class="section-inner-wide">
+    <div class="reveal">
+      <p class="section-eyebrow">Key Terms</p>
+      <h2 class="section-title">Neuroscience Glossary</h2>
+      <p class="section-lead">Essential vocabulary for understanding the science of the brain.</p>
+    </div>
+    <div class="reveal" style="margin-bottom:1.5rem">
+      <input type="text" id="glossary-search" placeholder="Search terms... (e.g. dopamine, memory, synapse)" oninput="searchGlossary()" style="width:100%;max-width:500px;font-family:'DM Sans',sans-serif;font-size:.92rem;background:var(--card);color:var(--text);border:1.5px solid var(--border);border-radius:10px;padding:.7rem 1.1rem;outline:none;transition:border-color .2s"/>
+    </div>
+    <div class="reveal" id="glossary-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem">
+      <div class="res-card" data-term="neuron">
+        <div class="res-type">🧬 Core Concept</div>
+        <h4>Neuron</h4>
+        <p>The basic building block of the brain — a specialised cell that transmits information through electrical and chemical signals.</p>
+      </div>
+      <div class="res-card" data-term="neuroplasticity">
+        <div class="res-type">🧬 Core Concept</div>
+        <h4>Neuroplasticity</h4>
+        <p>The brain's ability to reorganise itself by forming new neural connections throughout life. Every skill you learn physically changes the brain.</p>
+      </div>
+      <div class="res-card" data-term="synapse">
+        <div class="res-type">🧬 Core Concept</div>
+        <h4>Synapse</h4>
+        <p>The tiny gap between two neurons where chemical signals are passed from one to another. Communication between neurons happens here.</p>
+      </div>
+      <div class="res-card" data-term="neurotransmitter">
+        <div class="res-type">⚗️ Chemistry</div>
+        <h4>Neurotransmitter</h4>
+        <p>A chemical messenger that carries signals between neurons across a synapse. Examples include dopamine, serotonin, and adrenaline.</p>
+      </div>
+      <div class="res-card" data-term="dopamine">
+        <div class="res-type">⚗️ Chemistry</div>
+        <h4>Dopamine</h4>
+        <p>A neurotransmitter involved in motivation, reward, and pleasure. Released when you achieve a goal or experience something enjoyable.</p>
+      </div>
+      <div class="res-card" data-term="cortisol">
+        <div class="res-type">⚗️ Chemistry</div>
+        <h4>Cortisol</h4>
+        <p>A stress hormone released by the body during fight-or-flight responses. Prolonged cortisol levels can affect memory, mood, and health.</p>
+      </div>
+      <div class="res-card" data-term="amygdala">
+        <div class="res-type">🧠 Brain Structure</div>
+        <h4>Amygdala</h4>
+        <p>A small brain structure that acts as the brain's alarm system, processing emotions like fear and stress and triggering fight-or-flight.</p>
+      </div>
+      <div class="res-card" data-term="hippocampus">
+        <div class="res-type">🧠 Brain Structure</div>
+        <h4>Hippocampus</h4>
+        <p>A brain region crucial for forming and storing new memories. Plays a key role in converting short-term memories into long-term ones.</p>
+      </div>
+      <div class="res-card" data-term="rem sleep">
+        <div class="res-type">💤 Sleep</div>
+        <h4>REM Sleep</h4>
+        <p>Rapid Eye Movement sleep — the stage where vivid dreaming occurs and memories are consolidated. Brain activity resembles a waking state.</p>
+      </div>
+      <div class="res-card" data-term="cognitive bias">
+        <div class="res-type">💭 Psychology</div>
+        <h4>Cognitive Bias</h4>
+        <p>A systematic error in thinking that affects decisions and judgements. The brain uses shortcuts that can sometimes lead to biased conclusions.</p>
+      </div>
+      <div class="res-card" data-term="heuristics">
+        <div class="res-type">💭 Psychology</div>
+        <h4>Heuristics</h4>
+        <p>Mental shortcuts the brain uses to make quick decisions. They save time and energy but can occasionally lead to cognitive biases.</p>
+      </div>
+      <div class="res-card" data-term="negativity bias">
+        <div class="res-type">💭 Psychology</div>
+        <h4>Negativity Bias</h4>
+        <p>The brain's tendency to pay more attention to negative experiences than positive ones — an evolutionary survival mechanism.</p>
+      </div>
+      <div class="res-card" data-term="inattentional blindness">
+        <div class="res-type">👁️ Perception</div>
+        <h4>Inattentional Blindness</h4>
+        <p>Failing to notice unexpected events when attention is focused elsewhere. Seeing isn't just about your eyes — it's about what your brain chooses to notice.</p>
+      </div>
+      <div class="res-card" data-term="default mode network">
+        <div class="res-type">🧠 Brain Structure</div>
+        <h4>Default Mode Network</h4>
+        <p>A brain network active during daydreaming, self-reflection, and imagination. Becomes active when the mind wanders.</p>
+      </div>
+      <div class="res-card" data-term="basal ganglia">
+        <div class="res-type">🧠 Brain Structure</div>
+        <h4>Basal Ganglia</h4>
+        <p>Brain structures involved in habit formation and automatic behaviours. Takes over repeated actions so the brain can conserve energy.</p>
+      </div>
+      <div class="res-card" data-term="habituation">
+        <div class="res-type">💭 Psychology</div>
+        <h4>Habituation</h4>
+        <p>A reduced brain response to stimuli that appear repeatedly. Helps conserve mental resources by filtering out unimportant information.</p>
+      </div>
+      <div class="res-card" data-term="zeigarnik effect">
+        <div class="res-type">💭 Psychology</div>
+        <h4>Zeigarnik Effect</h4>
+        <p>The tendency to remember unfinished tasks better than completed ones. Unfinished activities stay active in the mind until resolved.</p>
+      </div>
+      <div class="res-card" data-term="neurodiversity">
+        <div class="res-type">🌐 Society</div>
+        <h4>Neurodiversity</h4>
+        <p>The natural variation in how human brains work and process information. Includes conditions like ADHD and autism, each with unique strengths.</p>
+      </div>
+      <div class="res-card" data-term="adrenaline">
+        <div class="res-type">⚗️ Chemistry</div>
+        <h4>Adrenaline</h4>
+        <p>A hormone released during stress that speeds up heart rate and prepares the body for action. A key part of the fight-or-flight response.</p>
+      </div>
+      <div class="res-card" data-term="neuropsychology">
+        <div class="res-type">🎓 Career</div>
+        <h4>Neuropsychology</h4>
+        <p>The study of how brain structure and function relate to behaviour and cognition — a bridge between neuroscience and clinical psychology.</p>
+      </div>
+    </div>
+  </div>
+</section>
+  
 <!-- ABOUT -->
 <section id="about">
   <div class="section-inner">
@@ -1239,6 +1356,16 @@ function restartQuiz(){
 
 loadQ();
 
+  /* ── GLOSSARY SEARCH ── */
+function searchGlossary(){
+  const query=document.getElementById('glossary-search').value.toLowerCase().trim();
+  document.querySelectorAll('#glossary-grid .res-card').forEach(c=>{
+    const term=c.dataset.term||'';
+    const text=c.innerText.toLowerCase();
+    c.style.display=(!query||term.includes(query)||text.includes(query))?'flex':'none';
+  });
+}
+  
 /* ── RESOURCES FILTER ── */
 function filterRes(cat,btn){
   document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
