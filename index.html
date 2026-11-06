@@ -304,6 +304,7 @@ if('serviceWorker' in navigator){
     <li><a href="#quiz">Quiz</a></li>
     <li><a href="#resources">Resources</a></li>
     <li><a href="#glossary">Glossary</a></li>
+    <li><a href="#explorer">Brain Explorer</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#connect" class="nav-cta">Connect</a></li>
   </ul>
@@ -339,7 +340,7 @@ if('serviceWorker' in navigator){
   </div>
   <div class="hero-stats">
     <div class="hero-stat">
-      <span class="hero-stat-num">140+</span>
+      <span class="hero-stat-num">150+</span>
       <span class="hero-stat-label">Daily facts</span>
     </div>
     <div class="hero-divider"></div>
@@ -358,9 +359,9 @@ if('serviceWorker' in navigator){
 <!-- TICKER -->
 <div class="ticker">
   <span class="ticker-label">Today's Fact</span>
-  <p class="ticker-text"><strong>26th October 2026:</strong> 
- Goals help guide attention!
-Clear objectives can make it easier to focus on important tasks. 
+  <p class="ticker-text"><strong>6th November 2026:</strong> 
+ The brain can adjust strategies when needed!
+Flexibility helps people solve problems in changing situations. 
 </p>
 </div>
 
@@ -922,6 +923,120 @@ Clear objectives can make it easier to focus on important tasks.
   </div>
 </section>
   
+<!-- BRAIN EXPLORER -->
+<section id="explorer" style="background:var(--purple-soft)">
+<style>
+.bx-layout{display:grid;grid-template-columns:1.1fr 1fr;gap:2rem;align-items:start}
+.bx-map{background:var(--card);border:1.5px solid var(--border);border-radius:16px;padding:1rem}
+.bx-map svg{width:100%;height:auto;display:block}
+.bx-region{cursor:pointer;fill-opacity:.55;stroke:var(--purple);stroke-width:1.5;transition:fill-opacity .2s}
+.bx-region:hover{fill-opacity:.85}
+.bx-region.active{fill-opacity:.95;stroke:var(--text);stroke-width:3}
+.bx-deep{stroke-dasharray:4 3}
+.bx-label{pointer-events:none;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;fill:#fff;paint-order:stroke;stroke:#1a1128;stroke-width:3px}
+.bx-hint{font-size:.8rem;color:var(--text-light);text-align:center;margin-top:.6rem}
+.bx-info{background:var(--card);border:1.5px solid var(--border);border-radius:16px;padding:1.5rem;min-height:280px}
+.bx-info h3{font-family:'Fraunces',serif;font-size:1.4rem;color:var(--purple);margin-bottom:.6rem}
+.bx-info p{font-size:.93rem;color:var(--text-mid);line-height:1.7;margin-bottom:.9rem}
+.bx-sub{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-dark);margin-bottom:.4rem}
+.bx-chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1rem}
+.bx-chip{background:var(--purple-soft);color:var(--text-mid);font-size:.78rem;padding:.25rem .7rem;border-radius:100px;border:1px solid var(--border)}
+.bx-go{background:var(--teal);color:#2D1B69;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.85rem;padding:.55rem 1.1rem;border:none;border-radius:8px;cursor:pointer;margin-top:.3rem}
+.bx-go:hover{background:var(--teal-dark);color:#fff}
+.bx-links a{color:var(--teal-dark);font-weight:600;font-size:.88rem;text-decoration:none;display:block;margin-bottom:.25rem}
+.bx-btns{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem}
+.bx-btn{background:var(--card);border:1.5px solid var(--border);color:var(--text-mid);font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:600;padding:.4rem 1rem;border-radius:100px;cursor:pointer;transition:all .2s}
+.bx-btn:hover,.bx-btn.active{background:var(--purple);color:#fff;border-color:var(--purple)}
+@media(max-width:768px){.bx-layout{grid-template-columns:1fr}}
+</style>
+  <div class="section-inner-wide">
+    <p class="section-eyebrow">Interactive</p>
+    <h2 class="section-title">Brain Explorer</h2>
+    <p class="section-lead">Tap a region of the brain to see what it does and find related facts and articles.</p>
+
+    <div class="bx-layout">
+      <div class="bx-map">
+        <svg viewBox="0 0 400 300" role="img" aria-label="Side view of the human brain with clickable regions">
+          <path class="bx-region" data-bx="brainstem" tabindex="0" role="button" aria-label="Brainstem" fill="#8f7fb5" d="M215 200 L248 200 L256 280 L228 282 Z"/>
+          <ellipse class="bx-region" data-bx="cerebellum" tabindex="0" role="button" aria-label="Cerebellum" fill="#4a90d9" cx="292" cy="225" rx="52" ry="28"/>
+          <path class="bx-region" data-bx="frontal" tabindex="0" role="button" aria-label="Frontal lobe" fill="#7B5EA7" d="M62 150 C55 95 100 42 170 40 C185 40 195 42 205 45 L225 150 L120 175 C90 175 66 168 62 150 Z"/>
+          <path class="bx-region" data-bx="parietal" tabindex="0" role="button" aria-label="Parietal lobe" fill="#0ABFBC" d="M205 45 C255 38 305 55 325 95 L305 165 L225 150 Z"/>
+          <path class="bx-region" data-bx="occipital" tabindex="0" role="button" aria-label="Occipital lobe" fill="#e879a0" d="M325 95 C350 120 345 165 320 185 L305 165 Z"/>
+          <path class="bx-region" data-bx="temporal" tabindex="0" role="button" aria-label="Temporal lobe" fill="#F5C842" d="M120 175 L225 150 L305 165 L320 185 C300 210 250 210 220 205 C170 205 135 195 120 175 Z"/>
+          <ellipse class="bx-region bx-deep" data-bx="hippocampus" tabindex="0" role="button" aria-label="Hippocampus" fill="#ff9f43" cx="215" cy="180" rx="30" ry="8"/>
+          <circle class="bx-region bx-deep" data-bx="amygdala" tabindex="0" role="button" aria-label="Amygdala" fill="#ff6b6b" cx="165" cy="172" r="11"/>
+          <text class="bx-label" x="95" y="115">Frontal</text>
+          <text class="bx-label" x="235" y="100">Parietal</text>
+          <text class="bx-label" x="312" y="148" font-size="11">Occ.</text>
+          <text class="bx-label" x="150" y="198">Temporal</text>
+          <text class="bx-label" x="270" y="260">Cerebellum</text>
+          <text class="bx-label" x="205" y="270" text-anchor="end">Brainstem</text>
+        </svg>
+        <p class="bx-hint">Simplified diagram. Dashed shapes (amygdala, hippocampus) sit deep inside the brain.</p>
+      </div>
+      <div class="bx-info" id="bx-info"></div>
+    </div>
+    <div class="bx-btns" id="bx-btns"></div>
+  </div>
+
+<script>
+var BX={
+ frontal:{name:"Frontal Lobe",does:"The front of the brain. It handles planning, decision-making, self-control and voluntary movement. It is the last region to fully mature, which is why teenage brains are still developing.",involved:["Planning","Decision-making","Impulse control","Movement","Speech"],search:"decision",articles:[["What Is Productivity and How Does It Help Us?"],["Why Do Some Brains Work Differently Than Others?"]]},
+ parietal:{name:"Parietal Lobe",does:"Combines information from the senses. It processes touch, helps you understand where your body is in space and plays a big role in directing attention.",involved:["Touch","Spatial awareness","Attention","Navigation"],search:"attention",articles:[["What Is Productivity and How Does It Help Us?"]]},
+ temporal:{name:"Temporal Lobe",does:"Located near the ears. It processes sound, helps you understand language and recognise faces, and works closely with the hippocampus in forming memories.",involved:["Hearing","Language","Face recognition","Memory"],search:"face",articles:[["The Science of Memory"]]},
+ occipital:{name:"Occipital Lobe",does:"At the back of the brain. It is the main visual processing centre, working out shapes, colours and movement from what your eyes send it.",involved:["Vision","Colour","Movement detection"],search:"visual",articles:[]},
+ cerebellum:{name:"Cerebellum",does:"Sits at the back, under the main brain. It coordinates movement, balance and timing, and helps skills become smooth and automatic with practice.",involved:["Balance","Coordination","Motor learning","Timing"],search:"practice",articles:[["The Science Behind Habits"]]},
+ brainstem:{name:"Brainstem",does:"Connects the brain to the spinal cord and keeps you alive. It controls breathing, heart rate and the sleep-wake cycle, and is involved in alertness.",involved:["Breathing","Heart rate","Sleep-wake cycle","Alertness"],search:"sleep",articles:[["The Science of Dreams"],["Why Do We Yawn?"]]},
+ hippocampus:{name:"Hippocampus",does:"A seahorse-shaped structure deep in the temporal lobe. It is essential for forming new memories and helps turn short-term memories into long-term ones. It also supports spatial navigation.",involved:["Forming memories","Memory consolidation","Navigation"],search:"memor",articles:[["The Science of Memory"],["The Science of Dreams"]]},
+ amygdala:{name:"Amygdala",does:"A small almond-shaped structure deep in the temporal lobe. It acts as the brain's alarm system, detecting threats and attaching emotion to experiences and memories.",involved:["Fear and threat detection","Emotion","Emotional memory","Stress response"],search:"emotion",articles:[["Why Do We Stress Out?"],["Why Do We Cry?"]]}
+};
+var BX_ORDER=["frontal","parietal","temporal","occipital","cerebellum","brainstem","hippocampus","amygdala"];
+
+function bxGoFacts(term){
+  var el=document.getElementById("facts-search");
+  el.value=term;
+  searchFacts();
+  document.getElementById("facts").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function bxSelect(key){
+  var r=BX[key];
+  document.querySelectorAll(".bx-region").forEach(function(n){n.classList.toggle("active",n.getAttribute("data-bx")===key);});
+  document.querySelectorAll(".bx-btn").forEach(function(n){n.classList.toggle("active",n.getAttribute("data-bx")===key);});
+  var chips="";
+  r.involved.forEach(function(t){chips+='<span class="bx-chip">'+t+'</span>';});
+  var links="";
+  if(r.articles.length){
+    links='<div class="bx-sub">Related articles</div><div class="bx-links">';
+    r.articles.forEach(function(a){links+='<a href="#articles">'+a[0]+' →</a>';});
+    links+='</div>';
+  } else {
+    links='<div class="bx-sub">Related articles</div><p style="margin-bottom:.5rem">No dedicated article yet. Check the related facts below.</p>';
+  }
+  document.getElementById("bx-info").innerHTML='<h3>'+r.name+'</h3><p>'+r.does+'</p><div class="bx-sub">Involved in</div><div class="bx-chips">'+chips+'</div>'+links+'<button class="bx-go" id="bx-go">See related facts →</button>';
+  document.getElementById("bx-go").onclick=function(){bxGoFacts(r.search);};
+}
+
+(function(){
+  var box=document.getElementById("bx-btns");
+  BX_ORDER.forEach(function(k){
+    var b=document.createElement("button");
+    b.className="bx-btn";
+    b.setAttribute("data-bx",k);
+    b.textContent=BX[k].name;
+    b.onclick=function(){bxSelect(k);};
+    box.appendChild(b);
+  });
+  document.querySelectorAll("path[data-bx],ellipse[data-bx],circle[data-bx]").forEach(function(n){
+    var k=n.getAttribute("data-bx");
+    n.addEventListener("click",function(){bxSelect(k);});
+    n.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();bxSelect(k);}});
+  });
+  document.getElementById("bx-info").innerHTML='<h3>Pick a region</h3><p>Tap any part of the brain, or use the buttons below, to see what it does and which NeuroNova content relates to it.</p>';
+})();
+</script>
+</section>
+  
 <!-- ABOUT -->
 <section id="about">
   <div class="section-inner">
@@ -931,12 +1046,12 @@ Clear objectives can make it easier to focus on important tasks.
     </div>
     <div class="about-layout reveal">
       <div class="about-body">
-        <p>Hi! I'm <strong>Seher</strong>, a Grade 8 IGCSE student with a deep passion for neuroscience and psychology. NeuroNova started as a personal curiosity project — a way to explore the brain while helping others discover just how fascinating the mind can be.</p>
+        <p>Hi! I'm <strong>Seher Chauhan</strong>, a Grade 8 IGCSE student with a deep passion for neuroscience and psychology. NeuroNova started as a personal curiosity project — a way to explore the brain while helping others discover just how fascinating the mind can be.</p>
         <p>Every fact, article, and resource on this site is researched and written by me. My goal is to make neuroscience feel exciting, relevant, and approachable — whether you're encountering it for the first time or already know the basics.</p>
         <p>NeuroNova is growing into something bigger: a booklet, school workshops, and a long-term platform for young people interested in the brain sciences.</p>
         <div class="about-quote">
           "The human brain is the most complex object in the known universe — and we've barely scratched the surface of understanding it."
-          <cite>— Seher, Founder of NeuroNova</cite>
+          <cite>— Seher Chauhan, Founder of NeuroNova</cite>
         </div>
       </div>
       <div class="about-cards">
@@ -1039,7 +1154,7 @@ Clear objectives can make it easier to focus on important tasks.
       </div>
     </div>
     <div class="footer-bottom">
-      <span class="footer-copy">© 2026 NeuroNova · A student-led initiative by Seher</span>
+      <span class="footer-copy">© 2026 NeuroNova · A student-led initiative by Seher Chauhan</span>
       <span class="footer-love">Built with curiosity 🧠 · Prometheus School, Noida</span>
     </div>
   </div>
@@ -1062,6 +1177,17 @@ function closeMenu(){document.getElementById('mobile-nav').classList.remove('ope
 
 /* ── FACTS ── */
 const facts=[
+{date:"6 November", text:"The brain can adjust strategies when needed! Flexibility helps people solve problems in changing situations."},
+{date:"5 November", text:"New experiences expand knowledge networks! Each experience can add to the brain's understanding of the world."},
+{date:"4 November", text:"The brain learns from observation! Watching others can provide useful information about actions and outcomes."},
+{date:"3 November", text:"Attention can improve performance! Focusing on a task often leads to more accurate results."},
+{date:"2 November", text:"Learning involves building mental models! The brain creates internal representations to understand how things work."},
+{date:"1 November", text:"Your brain can recognize familiar voices quickly! Experience helps the brain identify important sounds efficiently."},
+{date:"31 October", text:"Curiosity encourages deeper thinking! Wanting to know more often leads to stronger learning."},
+{date:"30 October", text:"Knowledge grows through connections! The more links an idea has to existing knowledge, the easier it is to remember."},
+{date:"29 October", text:"The brain responds to challenges differently over time! Experience can change how situations are interpreted and handled."},
+{date:"28 October", text:"Understanding patterns improves prediction! Recognizing regularities helps the brain anticipate future events."},
+{date:"27 October", text:"The brain learns through exploration! Trying new approaches can reveal valuable information and skills."},
 {date:"26 October", text:"Goals help guide attention! Clear objectives can make it easier to focus on important tasks."},
 {date:"25 October", text:"The brain values useful information! Information that seems relevant is often processed more deeply."},
 {date:"24 October", text:"Learning is influenced by context! The environment in which information is learned can affect recall later."},
