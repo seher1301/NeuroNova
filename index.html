@@ -956,38 +956,42 @@ Flexibility helps people solve problems in changing situations.
 
     <div class="bx-layout">
       <div class="bx-map">
-        <svg viewBox="0 0 400 300" role="img" aria-label="Side view of the human brain with clickable regions">
-  <defs>
-    <clipPath id="bx-clip">
-      <path d="M60 160 C50 100 95 45 170 38 C230 32 300 40 335 85 C365 125 360 175 325 195 C300 212 270 218 245 220 C205 232 140 228 105 205 C78 190 64 178 60 160 Z"/>
-    </clipPath>
-  </defs>
+        <svg viewBox="0 0 960 690" role="img" aria-label="Side view of the human brain with clickable regions">
+  <style>
+    svg .bx-region{fill-opacity:0;stroke:transparent;stroke-width:5;stroke-dasharray:none;cursor:pointer;transition:fill-opacity .25s,stroke .25s}
+    svg .bx-region:hover,svg .bx-region:focus{fill-opacity:.35;stroke:#2D1B69;outline:none}
+    svg .bx-region.active{fill-opacity:.5;stroke:#2D1B69;stroke-width:6;animation:bxpulse 2s ease-in-out infinite}
+    svg .bx-deep{fill-opacity:.8;stroke:#fff;stroke-width:3;stroke-dasharray:none;animation:bxdot 2.4s ease-in-out infinite}
+    svg .bx-deep:hover,svg .bx-deep.active{fill-opacity:1;stroke:#2D1B69;stroke-width:5}
+    @keyframes bxpulse{0%,100%{fill-opacity:.3}50%{fill-opacity:.65}}
+    @keyframes bxdot{0%,100%{opacity:.75}50%{opacity:1}}
+    @keyframes bxfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+    .bx-float{animation:bxfloat 6s ease-in-out infinite}
+    @media (prefers-reduced-motion:reduce){.bx-float,svg .bx-region.active,svg .bx-deep{animation:none}}
+  </style>
+  <rect width="960" height="690" rx="24" fill="#ffffff"/>
+  <g class="bx-float">
+    <image href="brain.png" x="0" y="0" width="960" height="690"/>
 
-  <path class="bx-region" data-bx="brainstem" tabindex="0" role="button" aria-label="Brainstem" fill="#9a8fbf" d="M195 215 L245 215 C248 245 252 268 248 290 L216 292 C214 262 202 240 195 215 Z"/>
-  <ellipse class="bx-region" data-bx="cerebellum" tabindex="0" role="button" aria-label="Cerebellum" fill="#5b9bd5" cx="295" cy="232" rx="52" ry="27"/>
-  <path d="M255 228 Q295 238 338 228 M258 238 Q295 248 335 238 M265 247 Q295 255 325 247" fill="none" stroke="#fff" stroke-opacity=".45" stroke-width="1.5" style="pointer-events:none"/>
+    <path class="bx-region" data-bx="frontal" tabindex="0" role="button" aria-label="Frontal lobe" fill="#7B5EA7" d="M40 300 L60 230 L110 160 L200 110 L300 70 L420 45 L535 50 L500 85 L465 100 L470 150 L440 215 L420 270 L405 300 L420 322 L360 360 L310 385 L295 410 L250 500 L150 515 L100 490 L50 430 L38 370 Z"/>
+    <path class="bx-region" data-bx="parietal" tabindex="0" role="button" aria-label="Parietal lobe" fill="#F5C842" d="M535 50 L600 60 L690 90 L770 145 L848 238 L815 262 L778 330 L650 310 L530 292 L470 305 L420 322 L405 300 L440 215 L470 150 L465 100 L500 85 Z"/>
+    <path class="bx-region" data-bx="occipital" tabindex="0" role="button" aria-label="Occipital lobe" fill="#e84a7f" d="M848 238 L890 285 L918 355 L905 410 L888 462 L830 487 L760 490 L705 480 L750 425 L790 385 L778 330 L815 262 Z"/>
+    <path class="bx-region" data-bx="temporal" tabindex="0" role="button" aria-label="Temporal lobe" fill="#2e9e5b" d="M420 322 L470 305 L530 292 L650 310 L778 330 L790 385 L750 425 L705 478 L640 500 L560 520 L490 545 L470 570 L400 590 L340 595 L290 570 L262 530 L250 500 L295 410 L310 385 L360 360 Z"/>
+    <path class="bx-region" data-bx="cerebellum" tabindex="0" role="button" aria-label="Cerebellum" fill="#4a90d9" d="M520 545 L560 520 L640 502 L705 485 L830 490 L842 530 L815 585 L760 625 L700 640 L640 640 L590 620 L555 590 Z"/>
+    <path class="bx-region" data-bx="brainstem" tabindex="0" role="button" aria-label="Brainstem" fill="#8f7fb5" d="M488 548 L520 560 L555 600 L625 645 L597 668 L560 640 L510 600 L485 568 Z"/>
 
-  <g clip-path="url(#bx-clip)">
-    <path class="bx-region" data-bx="frontal" tabindex="0" role="button" aria-label="Frontal lobe" fill="#9b7fd4" d="M0 0 L200 0 C205 60 215 110 232 152 L150 172 L95 190 L0 190 Z"/>
-    <path class="bx-region" data-bx="parietal" tabindex="0" role="button" aria-label="Parietal lobe" fill="#4cc9c0" d="M200 0 L300 0 C296 60 292 110 296 168 L232 152 C215 110 205 60 200 0 Z"/>
-    <path class="bx-region" data-bx="occipital" tabindex="0" role="button" aria-label="Occipital lobe" fill="#f08fb0" d="M300 0 L400 0 L400 260 L290 260 L296 168 C292 110 296 60 300 0 Z"/>
-    <path class="bx-region" data-bx="temporal" tabindex="0" role="button" aria-label="Temporal lobe" fill="#f5c842" d="M0 190 L95 190 L150 172 L232 152 L296 168 L290 260 L0 260 Z"/>
-    <path d="M85 135 C100 112 115 148 132 122 S160 118 178 98 M75 165 C95 148 112 172 130 155 S158 150 180 135 M215 75 C235 58 250 88 268 68 S290 62 300 55 M225 120 C245 105 262 130 280 112 M310 105 C325 98 335 120 345 108 M120 195 C145 185 170 200 195 190" fill="none" stroke="#fff" stroke-opacity=".4" stroke-width="2" stroke-linecap="round" style="pointer-events:none"/>
+    <ellipse class="bx-region bx-deep" data-bx="hippocampus" tabindex="0" role="button" aria-label="Hippocampus" fill="#ff9f43" cx="560" cy="430" rx="62" ry="16" transform="rotate(-8 560 430)"/>
+    <circle class="bx-region bx-deep" data-bx="amygdala" tabindex="0" role="button" aria-label="Amygdala" fill="#ff4d4d" cx="420" cy="470" r="20"/>
+
+    <text class="bx-label" x="190" y="300" style="font-size:32px">Frontal</text>
+    <text class="bx-label" x="560" y="200" style="font-size:32px">Parietal</text>
+    <text class="bx-label" x="822" y="380" text-anchor="middle" style="font-size:24px">Occipital</text>
+    <text class="bx-label" x="400" y="535" style="font-size:30px">Temporal</text>
+    <text class="bx-label" x="640" y="600" style="font-size:28px">Cerebellum</text>
+    <text class="bx-label" x="470" y="650" text-anchor="end" style="font-size:26px">Brainstem</text>
   </g>
-
-  <path d="M60 160 C50 100 95 45 170 38 C230 32 300 40 335 85 C365 125 360 175 325 195 C300 212 270 218 245 220 C205 232 140 228 105 205 C78 190 64 178 60 160 Z" fill="none" stroke="#2D1B69" stroke-width="2.5" style="pointer-events:none"/>
-
-  <path class="bx-region bx-deep" data-bx="hippocampus" tabindex="0" role="button" aria-label="Hippocampus" fill="#ff9f43" d="M178 196 C195 182 230 180 252 192 C246 200 214 204 178 196 Z"/>
-  <circle class="bx-region bx-deep" data-bx="amygdala" tabindex="0" role="button" aria-label="Amygdala" fill="#ff6b6b" cx="160" cy="184" r="9"/>
-
-  <text class="bx-label" x="112" y="118">Frontal</text>
-  <text class="bx-label" x="240" y="95">Parietal</text>
-  <text class="bx-label" x="302" y="128" style="font-size:10.5px">Occipital</text>
-  <text class="bx-label" x="138" y="213" style="font-size:12px">Temporal</text>
-  <text class="bx-label" x="268" y="250" style="font-size:12px">Cerebellum</text>
-  <text class="bx-label" x="208" y="280" text-anchor="end" style="font-size:12px">Brainstem</text>
 </svg>
-        <p class="bx-hint">Simplified diagram. Dashed shapes (amygdala, hippocampus) sit deep inside the brain.</p>
+        <p class="bx-hint">Simplified diagram. The glowing dots (amygdala, hippocampus) sit deep inside the brain.</p>
       </div>
       <div class="bx-info" id="bx-info"></div>
     </div>
