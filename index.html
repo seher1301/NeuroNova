@@ -708,34 +708,36 @@ Information connected to understanding is often easier to remember.
 
 <!-- QUIZ -->
 <section id="quiz">
+<style>
+.qz-head{text-align:center;margin-bottom:1.5rem}
+.qz-head h3{font-family:'Fraunces',serif;font-size:1.6rem;margin-bottom:.4rem}
+.qz-head p{font-size:.9rem;color:rgba(255,255,255,.65)}
+.qz-levels{display:flex;flex-direction:column;gap:.8rem}
+.qz-level{display:flex;flex-direction:column;align-items:flex-start;gap:.25rem;text-align:left;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.18);color:#fff;font-family:'DM Sans',sans-serif;padding:1rem 1.2rem;border-radius:12px;cursor:pointer;transition:all .2s}
+.qz-level:hover{background:rgba(255,255,255,.15);border-color:#0ABFBC}
+.qz-level-name{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:700}
+.qz-level-blurb{font-size:.85rem;color:rgba(255,255,255,.7)}
+.qz-level-best{font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#F5C842}
+.qz-top{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem}
+.qz-badge{font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(10,191,188,.18);color:#0ABFBC;padding:.22rem .65rem;border-radius:100px}
+.qz-type{background:rgba(245,200,66,.18);color:#F5C842}
+.qz-input{width:100%;background:rgba(255,255,255,.08);border:none;border-bottom:2px solid rgba(255,255,255,.5);color:#fff;font-family:'DM Sans',sans-serif;font-size:1.05rem;padding:.7rem .3rem;outline:none;margin-bottom:.9rem}
+.qz-input:focus{border-bottom-color:#0ABFBC}
+.qz-input:disabled{opacity:.7}
+.qz-check{background:#F5C842;color:#2D1B69;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.9rem;border:none;border-radius:9px;padding:.7rem 1.6rem;cursor:pointer}
+.qz-check:disabled{opacity:.5;cursor:default}
+.qz-back{background:none;border:none;color:rgba(255,255,255,.6);font-family:'DM Sans',sans-serif;font-size:.82rem;cursor:pointer;margin-top:1.2rem;text-decoration:underline;padding:0;display:block}
+.qz-actions{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap}
+.qz-lvl-done{font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#0ABFBC;margin-bottom:.4rem}
+</style>
   <div class="section-inner">
     <div class="reveal" style="text-align:center;margin-bottom:2rem">
       <p class="section-eyebrow">Test Your Knowledge</p>
       <h2 class="section-title">Brain Quiz</h2>
-      <p class="section-lead" style="margin:0 auto">How much do you know about the human brain? Take the quiz and find out.</p>
+      <p class="section-lead" style="margin:0 auto">Pick a level, from easy warm-ups to tricky specifics. Can you clear all three?</p>
     </div>
     <div class="reveal">
-      <div class="quiz-shell">
-        <div id="quiz-game">
-          <div class="quiz-progress">
-            <span id="q-num">Question 1 of 6</span>
-            <div class="quiz-bar"><div class="quiz-bar-fill" id="q-bar" style="width:0%"></div></div>
-            <span id="q-score">Score: 0</span>
-          </div>
-          <div class="quiz-header">
-            <p>Can you score 30/30? </p>
-          </div>
-          <p class="quiz-q" id="q-text"></p>
-          <div class="quiz-opts" id="q-opts"></div>
-          <div class="quiz-feedback" id="q-feedback"></div>
-          <button class="quiz-next" id="q-next" onclick="nextQ()">Next question →</button>
-        </div>
-        <div class="quiz-result" id="quiz-result">
-          <div class="quiz-score" id="final-score"></div>
-          <p id="result-msg"></p>
-          <button class="quiz-restart" onclick="restartQuiz()">Try again 🔄</button>
-        </div>
-      </div>
+      <div class="quiz-shell" id="qz-shell"></div>
     </div>
   </div>
 </section>
@@ -1471,112 +1473,188 @@ function toggleArticle(id){
 }
 
 /* ── QUIZ ── */
- const questions=[
-  {q:"What is the brain's tendency to focus more on negative experiences called?",opts:["Confirmation bias","Negativity bias","Recency effect","Loss aversion"],ans:1,exp:"The negativity bias means negative events have a stronger impact on thoughts, emotions, and memory than equally positive ones — an evolutionary survival mechanism."},
-  {q:"Which sleep stage is most associated with vivid dreaming?",opts:["Stage 1 NREM","Stage 2 NREM","Stage 3 NREM","REM sleep"],ans:3,exp:"Dreams are most vivid during REM (Rapid Eye Movement) sleep, when brain activity closely resembles a waking state."},
-  {q:"The brain network active during daydreaming and self-reflection is called the...",opts:["Salience network","Prefrontal cortex","Default mode network","Limbic system"],ans:2,exp:"The default mode network becomes active when the mind wanders and is involved in imagination, self-reflection, memory, and creative thinking."},
-  {q:"Which brain region is most associated with habit formation?",opts:["Hippocampus","Amygdala","Prefrontal cortex","Basal ganglia"],ans:3,exp:"The basal ganglia controls routines and automatic behaviors. As a behavior is repeated, it takes over the process, requiring less conscious effort."},
-  {q:"What is the Zeigarnik Effect?",opts:["The tendency to remember the first item in a list","Remembering unfinished tasks better than completed ones","Feeling more stressed when interrupted","The brain's reward response to completing tasks"],ans:1,exp:"Unfinished activities often stay active in the mind, making them easier to remember than completed ones — named after psychologist Bluma Zeigarnik."},
-  {q:"Mental shortcuts the brain uses to make quick decisions are called...",opts:["Schemas","Algorithms","Heuristics","Neural pathways"],ans:2,exp:"Heuristics are mental shortcuts that help the brain process information efficiently, though they can sometimes lead to cognitive biases."},
-  {q:"Which structure acts as the brain's primary alarm system for threats?",opts:["Thalamus","Hippocampus","Cerebellum","Amygdala"],ans:3,exp:"The amygdala detects potential threats and triggers the release of stress hormones like adrenaline and cortisol, activating the fight-or-flight response."},
-  {q:"What is 'inattentional blindness'?",opts:["Reduced vision caused by sleep deprivation","Failing to notice unexpected stimuli when attention is focused elsewhere","The brain ignoring low-contrast images","A symptom of attention disorders"],ans:1,exp:"When attention is focused on one task, the brain may completely overlook unexpected events happening right in front of you."},
-  {q:"Why is eyewitness testimony sometimes unreliable?",opts:["People are generally poor observers","Stress always destroys memories","Memory is reconstructive and can be altered each time it is recalled","The hippocampus regularly deletes old memories"],ans:2,exp:"Memory is reconstructive, not reproductive — the brain rebuilds memories each time they are recalled, which can introduce errors or alterations."},
-  {q:"What two stress hormones are primarily released during fight-or-flight?",opts:["Dopamine and serotonin","Cortisol and melatonin","Adrenaline and cortisol","Oxytocin and insulin"],ans:2,exp:"When the amygdala detects a threat, the body releases adrenaline and cortisol, speeding up heart rate and breathing to prepare for action."},
-  {q:"What is 'habituation' in neuroscience?",opts:["The process of forming new habits","Increased sensitivity to repeated stimuli","A reduced brain response to repeated stimuli over time","The strengthening of neural pathways through practice"],ans:2,exp:"Habituation occurs when the brain responds less strongly to a stimulus that appears repeatedly, conserving mental resources for more important information."},
-  {q:"Which of the following best describes how memories are stored?",opts:["As exact recordings of events","As reconstructed patterns that can change each time they are recalled","Permanently and unchangeably after sleep","In a single location in the brain"],ans:1,exp:"Memory is reconstructive — the brain rebuilds memories from pieces each time they are recalled, which means details can be altered or lost over time."},
-  {q:"What is the relationship between emotions and logical reasoning in the brain?",opts:["They are processed in completely separate systems","Emotions always interfere with good reasoning","They are closely connected and emotions often guide decision-making","Logic always overrides emotional responses"],ans:2,exp:"Contrary to popular belief, emotions and reasoning are closely connected. Emotions often help guide decision-making rather than simply interfering with it."},
-  {q:"Why does short-term stress sometimes improve performance?",opts:["It permanently strengthens neural pathways","It increases dopamine permanently","It can sharpen focus and alertness in certain situations","It reduces activity in the prefrontal cortex"],ans:2,exp:"Short-term stress can improve focus and performance in certain situations. Problems usually arise when stress becomes chronic or overwhelming."},
-  {q:"What does research suggest about learning a second language?",opts:["It confuses existing language pathways","It can strengthen attention and mental flexibility","It only benefits children under age 10","It reduces creativity"],ans:1,exp:"Research suggests that bilingualism can strengthen certain cognitive skills, including attention and mental flexibility."},
-  {q:"Why do familiar smells trigger such vivid memories?",opts:["The nose is connected directly to the memory centre","Smell-processing regions are closely linked to areas involved in emotion and memory","Smells are processed faster than other senses","The brain stores smells differently from other information"],ans:1,exp:"The brain's smell-processing regions are closely connected to areas involved in emotion and memory, which is why a childhood scent can unlock vivid memories."},
-  {q:"Why do people remember stories better than isolated facts?",opts:["Stories are always shorter and simpler","The brain has a dedicated story-processing region","Stories provide context, emotion, and structure that help the brain organise information","People read stories more often than facts"],ans:2,exp:"Stories help organise information into meaningful patterns, making them easier for the brain to encode and recall than isolated facts."},
-  {q:"What happens in the brain when you watch someone perform an action?",opts:["Nothing — the brain only responds to your own actions","Some of the same neural systems activate as when performing it yourself","Only the visual cortex is activated","The brain records it as a new memory immediately"],ans:1,exp:"Watching someone perform an action activates some of the same neural systems involved in performing the action yourself, supporting observational learning."},
-  {q:"What is spaced repetition?",opts:["Studying for very long sessions with breaks in between","Reviewing information at increasing intervals over time","Repeating information out loud","Reading the same material multiple times in one sitting"],ans:1,exp:"Memory improves when learning is spaced out — reviewing information over increasing intervals is often more effective than studying everything at once."},
-  {q:"How does exercise benefit the brain?",opts:["It reduces the need for sleep","It increases blood flow and may support memory and learning","It shrinks the brain to improve processing speed","It replaces the need for mental practice"],ans:1,exp:"Physical activity increases blood flow to the brain and may support memory, learning, and overall brain health."},
-  {q:"What does the brain do with visual information during blinking?",opts:["Stores the darkness as a separate frame","Slows down visual processing","Smoothly fills in the missing information so vision appears continuous","Replays the last image seen"],ans:2,exp:"Humans blink thousands of times each day, yet the world doesn't appear dark because the brain smoothly fills in the missing visual information."},
-  {q:"What is the effect of curiosity on memory?",opts:["It only improves memory for the topic you're curious about","It can improve memory for both the topic of interest and unrelated information","It has no measurable effect on memory","It reduces memory by increasing distraction"],ans:1,exp:"When you're curious, the brain becomes more receptive to learning, improving memory for both the topic of interest and unrelated details learned at the same time."},
-  {q:"How does the brain respond to social rejection?",opts:["It classifies it as emotionally neutral","It activates regions similar to those involved in physical pain","It only affects mood, not brain activity","It immediately suppresses the memory"],ans:1,exp:"Studies suggest that social exclusion activates some of the same brain regions involved in processing physical discomfort, showing how important social connection is to humans."},
-  {q:"What is more effective for learning than simple repetition?",opts:["Longer study sessions","Passive re-reading","Active engagement and understanding","Highlighting key information"],ans:2,exp:"Repetition alone isn't enough — active engagement and understanding are often more effective than simply repeating information passively."},
-  {q:"Why does the brain process emotional information first?",opts:["Emotions are simpler to process than logic","Emotional brain regions can react extremely quickly, sometimes before conscious reasoning catches up","The prefrontal cortex is slower than the amygdala","Emotional memories are stored separately"],ans:1,exp:"Emotional brain regions can react to important information extremely quickly, sometimes before areas responsible for conscious reasoning fully analyse the situation."},
-  {q:"What does dopamine signal in the brain's reward system?",opts:["Pain and discomfort","Tiredness after effort","Motivation, reward, and the drive to repeat beneficial actions","Memory consolidation during sleep"],ans:2,exp:"Dopamine is involved in motivation and reward — achieving goals triggers its release, encouraging you to repeat actions that feel beneficial."},
-  {q:"What is 'habituation' most useful for?",opts:["Forming long-term memories","Conserving mental resources by reducing responses to unimportant repeated stimuli","Improving reaction time","Strengthening emotional responses"],ans:1,exp:"Habituation helps the brain conserve mental resources by responding less strongly to stimuli that appear repeatedly and don't require action."},
-  {q:"What does teaching others do for your own understanding?",opts:["It has no effect on the teacher","It forces the brain to organise and retrieve knowledge, revealing gaps","It only benefits the person being taught","It makes you more likely to forget the information"],ans:1,exp:"Explaining concepts to others forces the brain to organise and retrieve knowledge, often improving your own understanding and revealing gaps you didn't know existed."},
-  {q:"Strong emotions can alter the perception of time because...",opts:["The brain slows down during excitement","Emotional experiences alter how the brain processes and encodes time","Fear speeds up the internal clock permanently","The hippocampus pauses during intense emotions"],ans:1,exp:"Exciting, frightening, or highly emotional experiences can alter how the brain processes time, making moments seem longer or shorter than they really are."},
-  {q:"Why is balance between work and rest important for the brain?",opts:["Rest completely stops brain activity","The brain only learns during rest","Productivity, learning, and wellbeing all benefit from balancing effort with recovery","Rest is only important for physical health"],ans:2,exp:"The brain works best with balance — productivity, learning, and wellbeing all benefit from a healthy balance of work, rest, and recreation."},
+var QZ_LEVELS=[
+{name:"Level 1 · Easy",blurb:"Warm-up: the basics of how the brain works",qs:[
+{t:"mcq",q:"What is the basic building block of the brain?",o:["Neuron","Bone cell","Red blood cell","Muscle fibre"],a:0,e:"Neurons are specialised cells that send signals using electrical and chemical messages."},
+{t:"tf",q:"The brain itself can feel pain.",a:false,e:"The brain has no pain receptors. Headaches come from the blood vessels, muscles and nerves around it."},
+{t:"mcq",q:"About what percentage of your body's energy does the brain use?",o:["2%","10%","20%","50%"],a:2,e:"The brain is only about 2% of your body weight but uses around 20% of your energy."},
+{t:"fill",q:"Vivid dreaming mostly happens during ______ sleep.",a:["rem","rapid eye movement"],show:"REM",e:"REM (Rapid Eye Movement) sleep is when brain activity looks most like being awake."},
+{t:"tf",q:"Multitasking means your brain does several tasks at exactly the same time.",a:false,e:"The brain mostly switches quickly between tasks, which uses extra energy and causes more mistakes."},
+{t:"mcq",q:"Which structure acts as the brain's alarm system for fear and stress?",o:["Hippocampus","Amygdala","Cerebellum","Thalamus"],a:1,e:"The amygdala detects threats and triggers the fight-or-flight response."},
+{t:"fill",q:"The brain's ability to rewire itself throughout life is called ______.",a:["neuroplasticity","brain plasticity","plasticity"],show:"neuroplasticity",e:"Neuroplasticity means connections between neurons strengthen, weaken and reorganise with experience."},
+{t:"tf",q:"Forgetting is always a sign that something is wrong with your brain.",a:false,e:"Forgetting is a feature, not a flaw. The brain filters information to avoid overload."},
+{t:"mcq",q:"Which chemical is linked to motivation and reward?",o:["Dopamine","Insulin","Calcium","Keratin"],a:0,e:"Dopamine is released when you achieve a goal or enjoy something, motivating you to repeat it."},
+{t:"tf",q:"Sleep helps your brain store and organise memories.",a:true,e:"While you sleep, the brain replays and reorganises what you learned, helping make memories stable."}
+]},
+{name:"Level 2 · Medium",blurb:"Brain regions, hormones and thinking shortcuts",qs:[
+{t:"mcq",q:"Which brain region is most important for forming new memories?",o:["Cerebellum","Hippocampus","Brainstem","Occipital lobe"],a:1,e:"The hippocampus helps turn short-term memories into long-term ones."},
+{t:"fill",q:"The two main stress hormones released in fight-or-flight are adrenaline and ______.",a:["cortisol"],show:"cortisol",e:"Adrenaline and cortisol speed up your heart rate and breathing to prepare the body for action."},
+{t:"mcq",q:"What is the Zeigarnik Effect?",o:["Remembering unfinished tasks better than finished ones","Forgetting things when you are stressed","Recognising faces very quickly","Dreaming during REM sleep"],a:0,e:"Unfinished tasks tend to stay active in the mind, so they are easier to remember."},
+{t:"tf",q:"Each time you recall a memory, your brain replays it exactly like a video.",a:false,e:"Memory is reconstructive. The brain rebuilds it each time, so details can change."},
+{t:"mcq",q:"Which lobe is the main visual processing centre?",o:["Frontal","Temporal","Parietal","Occipital"],a:3,e:"The occipital lobe, at the back of the brain, works out shapes, colours and movement."},
+{t:"fill",q:"When your mind wanders, the default ______ network switches on.",a:["mode"],show:"mode",e:"The default mode network is active during daydreaming, self-reflection and imagination."},
+{t:"mcq",q:"Mental shortcuts the brain uses to make quick decisions are called...",o:["Schemas","Heuristics","Reflexes","Synapses"],a:1,e:"Heuristics save time and energy but can sometimes lead to cognitive biases."},
+{t:"tf",q:"Emotions and logical reasoning are processed in completely separate systems.",a:false,e:"They are closely connected, and emotions often help guide decisions."},
+{t:"fill",q:"Missing something obvious because your attention is elsewhere is called inattentional ______.",a:["blindness"],show:"blindness",e:"When attention is focused on one task, the brain can overlook unexpected events in plain sight."},
+{t:"mcq",q:"Which brain structures help turn repeated behaviours into habits?",o:["Basal ganglia","Thalamus","Pons","Pituitary gland"],a:0,e:"The basal ganglia take over repeated routines so the brain can save energy."}
+]},
+{name:"Level 3 · Hard",blurb:"Precise terms, memory types and psychology models",qs:[
+{t:"fill",q:"The three stages of memory are encoding, storage and ______.",a:["retrieval"],show:"retrieval",e:"Encoding takes information in, storage holds it, and retrieval brings it back to mind."},
+{t:"mcq",q:"Riding a bike without thinking about each step relies mainly on which type of long-term memory?",o:["Explicit (declarative) memory","Sensory memory","Implicit (non-declarative) memory","Working memory"],a:2,e:"Implicit memory covers skills and habits that you perform without conscious effort."},
+{t:"tf",q:"The frontal lobes are among the last brain regions to fully mature, often into the mid-20s.",a:true,e:"Development moves from the back of the brain forward, so planning and reasoning areas mature last."},
+{t:"fill",q:"Tiny rapid eye jumps during which the brain suppresses vision, so the world does not blur, are called ______.",a:["saccades","saccade"],show:"saccades",e:"Saccades happen constantly, and the brain edits out the blur between them."},
+{t:"mcq",q:"What are the three parts of the habit loop?",o:["Cue, routine, reward","Trigger, thought, action","Craving, effort, repetition","Signal, response, rest"],a:0,e:"A cue triggers a routine, which ends in a reward. Repeating the loop makes the behaviour automatic."},
+{t:"mcq",q:"Habituation is best described as...",o:["A stronger response each time a stimulus repeats","A reduced response to a stimulus that keeps repeating","Forming a new habit","Forgetting a memory over time"],a:1,e:"The brain responds less to repeated, unimportant stimuli, which conserves mental resources."},
+{t:"tf",q:"Neurodiversity means every difference in how brains work is a disorder that needs fixing.",a:false,e:"Neurodiversity is the idea that variation in how brains work is a natural part of human diversity."},
+{t:"fill",q:"The tendency for negative events to have a bigger impact than equally positive ones is called the ______ bias.",a:["negativity"],show:"negativity",e:"The negativity bias is thought to have evolved because remembering danger helped our ancestors survive."},
+{t:"mcq",q:"The diathesis-stress model suggests that mental health outcomes come from...",o:["Vulnerability combined with stress","Stress alone","Genes alone","Only childhood events"],a:0,e:"It says genetic or biological vulnerability and environmental stress combine to influence outcomes."},
+{t:"mcq",q:"According to the Yerkes-Dodson law, performance is usually best at...",o:["No arousal","Moderate arousal","Maximum arousal","Arousal that keeps rising"],a:1,e:"A moderate amount of arousal or stress helps performance, but too much makes it worse."}
+]}
 ];
-let qIdx=0,score=0,answered=false;
 
-function loadQ(){
-  answered=false;
-  const q=questions[qIdx];
-  document.getElementById('q-text').textContent=q.q;
-  document.getElementById('q-num').textContent=`Question ${qIdx+1} of ${questions.length}`;
-  document.getElementById('q-score').textContent=`Score: ${score}`;
-  document.getElementById('q-bar').style.width=`${(qIdx/questions.length)*100}%`;
-  const optsEl=document.getElementById('q-opts');
-  optsEl.innerHTML='';
-  q.opts.forEach((o,i)=>{
-    const b=document.createElement('button');
-    b.className='quiz-opt';
-    b.textContent=o;
-    b.onclick=()=>selectAns(i);
-    optsEl.appendChild(b);
+var qzShell=document.getElementById("qz-shell");
+var qzState={lvl:0,list:[],i:0,score:0,answered:false};
+
+function qzEl(tag,cls,text){var n=document.createElement(tag);if(cls){n.className=cls;}if(text!==undefined){n.textContent=text;}return n;}
+function qzShuffle(a){var b=a.slice(),i,j,t;for(i=b.length-1;i>0;i--){j=Math.floor(Math.random()*(i+1));t=b[i];b[i]=b[j];b[j]=t;}return b;}
+function qzNorm(s){return String(s).toLowerCase().replace(/[^a-z0-9 ]/g,"").replace(/\s+/g," ").trim();}
+function qzGetBest(l){try{var v=localStorage.getItem("nnBest"+l);return v===null?null:parseInt(v,10);}catch(e){return null;}}
+function qzSetBest(l,s){try{var o=qzGetBest(l);if(o===null||s>o){localStorage.setItem("nnBest"+l,String(s));}}catch(e){}}
+
+function qzMenu(){
+  qzShell.innerHTML="";
+  var head=qzEl("div","qz-head");
+  head.appendChild(qzEl("h3","","Choose your level"));
+  head.appendChild(qzEl("p","","10 questions per level. Each one gets trickier."));
+  qzShell.appendChild(head);
+  var grid=qzEl("div","qz-levels");
+  QZ_LEVELS.forEach(function(L,n){
+    var b=qzEl("button","qz-level");
+    b.appendChild(qzEl("span","qz-level-name",L.name));
+    b.appendChild(qzEl("span","qz-level-blurb",L.blurb));
+    var best=qzGetBest(n);
+    b.appendChild(qzEl("span","qz-level-best",best===null?"Not played yet":"Best: "+best+"/"+L.qs.length));
+    b.onclick=function(){qzStart(n);};
+    grid.appendChild(b);
   });
-  const fb=document.getElementById('q-feedback');
-  fb.className='quiz-feedback';
-  fb.textContent='';
-  const nxt=document.getElementById('q-next');
-  nxt.className='quiz-next';
+  qzShell.appendChild(grid);
 }
 
-function selectAns(i){
-  if(answered)return;
-  answered=true;
-  const q=questions[qIdx];
-  const opts=document.querySelectorAll('.quiz-opt');
-  opts.forEach(b=>b.disabled=true);
-  const fb=document.getElementById('q-feedback');
-  if(i===q.ans){
-    score++;
-    opts[i].classList.add('correct');
-    fb.className='quiz-feedback correct-fb show';
-    fb.textContent='✓ Correct! '+q.exp;
-  } else {
-    opts[i].classList.add('wrong');
-    opts[q.ans].classList.add('correct');
-    fb.className='quiz-feedback wrong-fb show';
-    fb.textContent='✗ Not quite. '+q.exp;
+function qzStart(n){
+  qzState={lvl:n,list:qzShuffle(QZ_LEVELS[n].qs),i:0,score:0,answered:false};
+  qzQuestion();
+}
+
+function qzQuestion(){
+  var S=qzState,q=S.list[S.i],L=QZ_LEVELS[S.lvl];
+  S.answered=false;
+  qzShell.innerHTML="";
+
+  var prog=qzEl("div","quiz-progress");
+  prog.appendChild(qzEl("span","","Question "+(S.i+1)+" of "+S.list.length));
+  var bar=qzEl("div","quiz-bar"),fillBar=qzEl("div","quiz-bar-fill");
+  fillBar.style.width=((S.i/S.list.length)*100)+"%";
+  bar.appendChild(fillBar);
+  prog.appendChild(bar);
+  var scoreEl=qzEl("span","","Score: "+S.score);
+  prog.appendChild(scoreEl);
+  qzShell.appendChild(prog);
+
+  var top=qzEl("div","qz-top");
+  top.appendChild(qzEl("span","qz-badge",L.name));
+  top.appendChild(qzEl("span","qz-badge qz-type",q.t==="mcq"?"Multiple choice":(q.t==="tf"?"True or false":"Fill in the blank")));
+  qzShell.appendChild(top);
+  qzShell.appendChild(qzEl("p","quiz-q",q.q));
+
+  var area=qzEl("div","quiz-opts");
+  var fb=qzEl("div","quiz-feedback");
+  var next=qzEl("button","quiz-next",S.i===S.list.length-1?"See results →":"Next question →");
+  next.onclick=function(){S.i++;if(S.i>=S.list.length){qzResult();}else{qzQuestion();}};
+
+  function resolve(ok,correctText){
+    if(S.answered){return;}
+    S.answered=true;
+    if(ok){S.score++;}
+    scoreEl.textContent="Score: "+S.score;
+    fb.className="quiz-feedback show "+(ok?"correct-fb":"wrong-fb");
+    fb.textContent=(ok?"✓ Correct! ":"✗ Not quite. "+(q.t==="fill"?"The answer is: "+correctText+". ":""))+q.e;
+    next.className="quiz-next show";
   }
-  document.getElementById('q-score').textContent=`Score: ${score}`;
-  document.getElementById('q-next').className='quiz-next show';
-}
 
-function nextQ(){
-  qIdx++;
-  if(qIdx>=questions.length){
-    showResult();
-  } else {
-    loadQ();
+  if(q.t==="fill"){
+    var inp=qzEl("input","qz-input");
+    inp.type="text";
+    inp.placeholder="Type your answer";
+    inp.setAttribute("autocomplete","off");
+    var chk=qzEl("button","qz-check","Check");
+    var doCheck=function(){
+      var v=qzNorm(inp.value);
+      if(!v){return;}
+      var ok=q.a.some(function(x){return qzNorm(x)===v;});
+      inp.disabled=true;
+      chk.disabled=true;
+      resolve(ok,q.show);
+    };
+    chk.onclick=doCheck;
+    inp.onkeydown=function(e){if(e.key==="Enter"){doCheck();}};
+    area.appendChild(inp);
+    area.appendChild(chk);
+  }else{
+    var opts=q.t==="tf"?["True","False"]:q.o;
+    var right=q.t==="tf"?(q.a?0:1):q.a;
+    var btns=[];
+    opts.forEach(function(txt,i){
+      var b=qzEl("button","quiz-opt",txt);
+      b.onclick=function(){
+        if(S.answered){return;}
+        btns.forEach(function(x){x.disabled=true;});
+        b.classList.add(i===right?"correct":"wrong");
+        if(i!==right){btns[right].classList.add("correct");}
+        resolve(i===right,"");
+      };
+      btns.push(b);
+      area.appendChild(b);
+    });
   }
+
+  qzShell.appendChild(area);
+  qzShell.appendChild(fb);
+  qzShell.appendChild(next);
+  var back=qzEl("button","qz-back","← Back to levels");
+  back.onclick=qzMenu;
+  qzShell.appendChild(back);
+
+  if(q.t==="fill"){inp.focus();}
 }
 
-function showResult(){
-  document.getElementById('quiz-game').style.display='none';
-  const res=document.getElementById('quiz-result');
-  res.className='quiz-result show';
-  document.getElementById('final-score').textContent=`${score}/${questions.length}`;
-  const msgs=["Keep exploring! 🧪","Good effort — keep reading! 📖","Solid brain knowledge! 🧠","Very impressive! 🌟","Excellent! You really know your neuroscience! 🏆","Perfect score! You're a NeuroNova star! ⭐"];
-  document.getElementById('result-msg').textContent=msgs[score]||msgs[3];
+function qzResult(){
+  var S=qzState,L=QZ_LEVELS[S.lvl],total=S.list.length;
+  qzSetBest(S.lvl,S.score);
+  qzShell.innerHTML="";
+  var box=qzEl("div","quiz-result show");
+  box.appendChild(qzEl("div","qz-lvl-done",L.name+" complete"));
+  box.appendChild(qzEl("div","quiz-score",S.score+"/"+total));
+  var pct=S.score/total;
+  var m=pct===1?"Perfect score! You're a NeuroNova star! ⭐":(pct>=0.8?"Excellent! You really know your neuroscience! 🏆":(pct>=0.6?"Solid brain knowledge! 🧠":(pct>=0.4?"Good effort, keep reading! 📖":"Keep exploring, you'll get there! 🧪")));
+  box.appendChild(qzEl("p","",m));
+  var row=qzEl("div","qz-actions");
+  var again=qzEl("button","qz-check","Try again 🔄");
+  again.onclick=function(){qzStart(S.lvl);};
+  row.appendChild(again);
+  if(S.lvl<QZ_LEVELS.length-1){
+    var nl=qzEl("button","qz-check","Next level →");
+    nl.onclick=function(){qzStart(S.lvl+1);};
+    row.appendChild(nl);
+  }
+  var all=qzEl("button","qz-check","All levels");
+  all.onclick=qzMenu;
+  row.appendChild(all);
+  box.appendChild(row);
+  qzShell.appendChild(box);
 }
 
-function restartQuiz(){
-  qIdx=0;score=0;
-  document.getElementById('quiz-game').style.display='block';
-  document.getElementById('quiz-result').className='quiz-result';
-  loadQ();
-}
-
-loadQ();
-
+if(qzShell){qzMenu();}
+  
   /* ── GLOSSARY SEARCH ── */
 function searchGlossary(){
   const query=document.getElementById('glossary-search').value.toLowerCase().trim();
