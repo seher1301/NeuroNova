@@ -359,9 +359,8 @@ if('serviceWorker' in navigator){
 <!-- TICKER -->
 <div class="ticker">
   <span class="ticker-label">Today's Fact</span>
-  <p class="ticker-text"><strong>7th November 2026:</strong> 
- Meaningful learning lasts longer!
-Information connected to understanding is often easier to remember.  
+  <p class="ticker-text"><strong>9th November 2026:</strong> 
+ Expectations can affect attention! People often notice information that matches what they anticipate. 
 </p>
 </div>
 
@@ -1256,6 +1255,8 @@ function closeMenu(){document.getElementById('mobile-nav').classList.remove('ope
 
 /* ── FACTS ── */
 const facts=[
+{date:"9 November", text:"Expectations can affect attention! People often notice information that matches what they anticipate."},
+{date:"8 November", text:"The brain processes information in parallel! Different regions can work together on multiple aspects of a task."},
 {date:"7 November", text:"Meaningful learning lasts longer! Information connected to understanding is often easier to remember."},
 {date:"6 November", text:"The brain can adjust strategies when needed! Flexibility helps people solve problems in changing situations."},
 {date:"5 November", text:"New experiences expand knowledge networks! Each experience can add to the brain's understanding of the world."},
@@ -1698,6 +1699,38 @@ const obs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});
 },{threshold:0.1});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+  <script>
+/* ── FACT OF THE DAY (auto) ── */
+(function(){
+  try{
+    if(typeof facts==="undefined"||!facts.length){return;}
+    var months=["January","February","March","April","May","June","July","August","September","October","November","December"];
+    var now=new Date();
+    var today=now.getDate()+" "+months[now.getMonth()];
+    var match=null;
+    for(var i=0;i<facts.length;i++){
+      if(facts[i].date===today){match=facts[i];break;}
+    }
+    var f=match||facts[0];
+    var label=match?(today+" "+now.getFullYear()):f.date;
+    var t=document.querySelector(".ticker-text");
+    if(t){
+      t.textContent="";
+      var s=document.createElement("strong");
+      s.textContent=label+": ";
+      t.appendChild(s);
+      t.appendChild(document.createTextNode(f.text));
+    }
+    var labels=document.querySelectorAll(".hero-stat-label");
+    for(var j=0;j<labels.length;j++){
+      if(labels[j].textContent.trim().toLowerCase()==="daily facts"){
+        var num=labels[j].previousElementSibling;
+        if(num){num.textContent=(Math.floor(facts.length/10)*10)+"+";}
+      }
+    }
+  }catch(e){}
+})();
 </script>
 </body>
 </html>
