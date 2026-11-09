@@ -1732,5 +1732,74 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
   }catch(e){}
 })();
 </script>
+  <script>
+/* ── SHARE BUTTONS FOR FACTS ── */
+(function(){
+  try{
+    var st=document.createElement("style");
+    st.textContent=".nn-share{margin-top:.8rem;background:rgba(10,191,188,.1);color:var(--teal-dark);border:1px solid rgba(10,191,188,.3);border-radius:100px;font-family:'DM Sans',sans-serif;font-size:.75rem;font-weight:600;padding:.3rem .85rem;cursor:pointer;transition:all .2s}.nn-share:hover{background:var(--teal);color:#2D1B69}";
+    document.head.appendChild(st);
+
+    function fallbackCopy(txt,done){
+      var ta=document.createElement("textarea");
+      ta.value=txt;
+      ta.style.position="fixed";
+      ta.style.opacity="0";
+      document.body.appendChild(ta);
+      ta.select();
+      try{document.execCommand("copy");done();}catch(e){}
+      document.body.removeChild(ta);
+    }
+    function copyText(txt,done){
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(txt).then(done,function(){fallbackCopy(txt,done);});
+      }else{
+        fallbackCopy(txt,done);
+      }
+    }
+
+    function decorate(){
+      var cards=document.querySelectorAll("#facts-list .fact-card");
+      for(var i=0;i<cards.length;i++){
+        var c=cards[i];
+        if(c.querySelector(".nn-share")){continue;}
+        var dEl=c.querySelector(".fact-date");
+        var bEl=c.querySelector(".fact-body");
+        if(!dEl||!bEl){continue;}
+        (function(card,dt,tx){
+          var b=document.createElement("button");
+          b.type="button";
+          b.className="nn-share";
+          b.textContent="Share this fact";
+          function doCopy(msg){
+            copyText(msg,function(){
+              b.textContent="Copied! ✓";
+              setTimeout(function(){b.textContent="Share this fact";},2000);
+            });
+          }
+          b.onclick=function(){
+            var msg="🧠 NeuroNova Brain Fact — "+dt+":\n\n"+tx+"\n\nneuronova-kohl.vercel.app";
+            if(navigator.share){
+              navigator.share({title:"NeuroNova Brain Fact",text:msg}).catch(function(err){
+                if(err&&err.name==="AbortError"){return;}
+                doCopy(msg);
+              });
+            }else{
+              doCopy(msg);
+            }
+          };
+          card.appendChild(b);
+        })(c,dEl.textContent,bEl.textContent);
+      }
+    }
+
+    var list=document.getElementById("facts-list");
+    if(list){
+      decorate();
+      new MutationObserver(decorate).observe(list,{childList:true});
+    }
+  }catch(e){}
+})();
+</script>
 </body>
 </html>
