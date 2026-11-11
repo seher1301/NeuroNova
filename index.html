@@ -1255,6 +1255,7 @@ function closeMenu(){document.getElementById('mobile-nav').classList.remove('ope
 
 /* ── FACTS ── */
 const facts=[
+{date:"11 November", text:"Practice can improve accuracy! Repeated experience often reduces mistakes and increases efficiency."},
 {date:"10 November", text:"Learning is an active process! The brain constantly interprets and organizes incoming information."},
 {date:"9 November", text:"Expectations can affect attention! People often notice information that matches what they anticipate."},
 {date:"8 November", text:"The brain processes information in parallel! Different regions can work together on multiple aspects of a task."},
@@ -1779,7 +1780,7 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
             });
           }
           b.onclick=function(){
-            var msg="🧠 NeuroNova Brain Fact — "+dt+":\n\n"+tx+"\n\nneuronova-kohl.vercel.app";
+            var msg="🧠 NeuroNova Brain Fact — "+dt+":\n\n"+tx+"\n\nwww.neuronova.science";
             if(navigator.share){
               navigator.share({title:"NeuroNova Brain Fact",text:msg}).catch(function(err){
                 if(err&&err.name==="AbortError"){return;}
